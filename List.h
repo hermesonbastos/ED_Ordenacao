@@ -6,7 +6,6 @@
 class List {
     private:
         Node *m_head;
-        Node *m_tail;
         size_t size;
 
     public:
@@ -22,11 +21,15 @@ class List {
         // Função begin: retorna o valor no inicio da lista
         int begin();
 
-        // Função pop: apaga o primeiro elemento da lista
-        void pop();
-
         // imprime a lista atual
         void print();
+
+        // insertion sort
+        void insertionSort();
+        
+        // // merge Sort
+        // void mergeSort();
+
 };
 
 #endif

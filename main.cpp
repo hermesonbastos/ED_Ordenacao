@@ -14,13 +14,15 @@ int main(){
     // Cria uma distribuição uniforme de números inteiros nessa faixa
     uniform_int_distribution<int> dist(1, 100);
 
-    for(int j = 0; j < 2; j++){
-        List *lista = new List();
-        for(int i = 0; i < 10; i++){
-            int randomNum = dist(gen);
-            lista->append(randomNum);
-        }
-        lista->print();
-        cout << "\n";
+    List *lista = new List();
+    for(int i = 0; i < 10; i++){
+        int randomNum = dist(gen);
+        lista->append(randomNum);
     }
+    // lista->print();
+    lista->print();
+    cout << "\n";
+    lista->insertionSort();
+    cout << "\n";
+    lista->print();
 }
