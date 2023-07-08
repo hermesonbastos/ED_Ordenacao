@@ -14,22 +14,35 @@ class List {
 
         // Função destrutora: desaloca todos os nos criados, o m_head e o m_tail
         ~List();
+
+        Node* getHead();
         
         // Função append: adiciona um novo elemento ao final da lista
         void append(int value);
 
-        // Função begin: retorna o valor no inicio da lista
-        int begin();
-
         // imprime a lista atual
         void print();
 
+        Node* begin();
+        Node* end();
+        void swap(Node* atual, Node* aux);
+        void bubblesort();
+        void selectionSort();
+        Node* partition(Node* inicio, Node* fim);
+        void quicksort(Node* low, Node* high);
+
         // insertion sort
         void insertionSort();
-        
-        // // merge Sort
-        // void mergeSort();
 
+        // merge sort
+        void mergeSort(Node* head, Node* tail);
+
+        Node* split(Node* head, Node* tail);
+
+        void merge(Node* head, Node* tail, Node* middle);
+
+        // gnome sort
+        void cocktailSort();
 };
 
 #endif
