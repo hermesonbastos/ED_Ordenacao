@@ -44,6 +44,11 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
-    }
+        "typeinfo": "cpp",
+        "node.maxMemory": "8192"
+    },
+    "editor.largeFileOptimizations": false,
+    "json.schemas": [
+
+    ]
 }
