@@ -1,0 +1,1 @@
+Os arquivos .dat gerados foram para essa pasta, não foram upados por conta do espaço e por conta do código sempre gerar eles quando executado.
