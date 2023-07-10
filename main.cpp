@@ -1,3 +1,5 @@
+// Hermeson Bastos Maia e João Paulo
+
 #include <iostream>
 #include <fstream>
 #include <random>
@@ -51,16 +53,16 @@ int main(){
 	
 	const int TOTAL_N = sizeof(tam)/sizeof(tam[0]);
 
-    vector<string> vec = {"2.txt", "insertionSort.txt", "selectionSort.txt", "quickSort.txt", "mergeSort.txt", "cocktailSort.txt"};
+    vector<string> vec = {"bubbleSort.txt", "insertionSort.txt", "selectionSort.txt", "quickSort.txt", "mergeSort.txt", "cocktailSort.txt"};
 
 	gera_dados(TOTAL_N, tam);
 	
-    for(int i = 3; i < 6; i++){
+    for(int i = 4; i < 6; i++){
         ofstream outputFile("./results/" + vec[i]);
 
         for(int iteracao = 0; iteracao < TOTAL_N; iteracao++) {	
             long double duracao_media = 0.0;
-            long double duracao_cocktail = 0.0;
+            long double duracao = 0.0;
             const int tamanho_vetor = tam[iteracao];
     
         for(int semente = 0; semente < 5; semente++) {	
@@ -74,34 +76,35 @@ int main(){
                 auto ini = std::chrono::high_resolution_clock::now();
                 lista->bubblesort();
                 auto fim = std::chrono::high_resolution_clock::now();
-                duracao_cocktail = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();
+                duracao = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();
             } else if(i == 1){
                 auto ini = std::chrono::high_resolution_clock::now();
                 lista->insertionSort();
                 auto fim = std::chrono::high_resolution_clock::now();
-                duracao_cocktail = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();
+                duracao = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();
             } else if(i == 2){
                 auto ini = std::chrono::high_resolution_clock::now();
                 lista->selectionSort();
                 auto fim = std::chrono::high_resolution_clock::now();
-                duracao_cocktail = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();              
+                duracao = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();              
             } else if(i == 3){
                 auto ini = std::chrono::high_resolution_clock::now();
                 lista->quicksort(lista->begin(), lista->end());
                 auto fim = std::chrono::high_resolution_clock::now();
-                duracao_cocktail = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();                
+                duracao = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();            
             } else if(i == 4){
                 auto ini = std::chrono::high_resolution_clock::now();
                 lista->mergeSort(lista->begin(), lista->end());
                 auto fim = std::chrono::high_resolution_clock::now();
-                duracao_cocktail = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();                
+                duracao = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();             
             } else if(i == 5){
                 auto ini = std::chrono::high_resolution_clock::now();
                 lista->cocktailSort();
                 auto fim = std::chrono::high_resolution_clock::now();
-                duracao_cocktail = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();             
+                duracao = std::chrono::duration_cast<std::chrono::microseconds>(fim - ini).count();           
             }
-            duracao_media += duracao_cocktail;
+
+            duracao_media += duracao;
         }
 
         duracao_media /= 5.0;
@@ -111,97 +114,3 @@ int main(){
 	outputFile.close();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// int main(){
-
-//     // Obtém o tempo atual como semente para o gerador de números aleatórios
-//     unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-
-//     mt19937 gen(seed);
-
-//     int maxInt = numeric_limits<int>::max();
-//     // Cria uma distribuição uniforme de números inteiros nessa faixa
-//     uniform_int_distribution<int> dist(1, maxInt);
-//     vector<string> vec = {"bubbleSort.txt", "insertionSort.txt", "selectionSort.txt", "quickSort.txt", "mergeSort.txt", "cocktailSort.txt"};
-
-//     for(int i = 0; i < 6; i++){
-//         ofstream outputFile("./results/" + vec[i]);
-//         for(int size = 1000; size < 100000; size+=1000){
-//             List *lista = new List();
-//             int med = 0;
-//             int temp;
-//             for(int i = 0; i < size; i++){
-//                 int randomNum = dist(gen);
-//                 lista->append(randomNum);
-//             }
-
-//             for(int i = 0; i < 5; i++){
-//                 if(i == 0){
-//                     auto start = chrono::high_resolution_clock::now();
-//                     lista->bubblesort();
-//                     auto end = chrono::high_resolution_clock::now();
-//                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-//                     temp = duration.count();
-//                 } else if(i == 1){
-//                     auto start = chrono::high_resolution_clock::now();
-//                     lista->insertionSort();
-//                     auto end = chrono::high_resolution_clock::now();
-//                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-//                     temp = duration.count();
-//                 } else if(i == 2){
-//                     auto start = chrono::high_resolution_clock::now();
-//                     lista->selectionSort();
-//                     auto end = chrono::high_resolution_clock::now();
-//                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-//                     temp = duration.count();                   
-//                 } else if(i == 3){
-//                     auto start = chrono::high_resolution_clock::now();
-//                     lista->quicksort(lista->begin(), lista->end());
-//                     auto end = chrono::high_resolution_clock::now();
-//                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-//                     temp = duration.count();                    
-//                 } else if(i == 4){
-//                      auto start = chrono::high_resolution_clock::now();
-//                     lista->mergeSort(lista->begin(), lista->end());
-//                     auto end = chrono::high_resolution_clock::now();
-//                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-//                     temp = duration.count();                  
-//                 } else {
-//                     auto start = chrono::high_resolution_clock::now();
-//                     lista->cocktailSort();
-//                     auto end = chrono::high_resolution_clock::now();
-//                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-//                     temp = duration.count();                    
-//                 }
-
-//                 med+=temp;
-//             }
-//             med = med / 5.0;
-//             outputFile << size << " " << med << endl;
-//         }
-//         outputFile.close();
-//     }
-// }
-
-
